@@ -1,0 +1,112 @@
+.button {
+    -fx-background-color: #025239;
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 15px; /* Радиус кнопки */
+    -fx-pref-width: 200px;
+    /*-fx-padding: 5px; !* Внутренний отступ для текста *!*/
+}
+.button:hover{
+    -fx-background-color: #2c2c2a;
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+.button:pressed {
+    -fx-background-color: #2c2c2a;
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+
+.button-active {
+    -fx-border-color: #cf9d14;
+    -fx-border-width: 3px;
+}
+
+.custom-hbox {
+    -fx-background-color: #b6bdab;
+    -fx-padding: 30px;
+}
+.custom-pane {
+    -fx-background-color: #b6bdab;
+    -fx-padding: 20 20 0 20;
+}
+
+.custom-area {
+    -fx-padding: 10 10 10 10 px;
+    -fx-font-size: 14px;
+    -fx-background-radius: 15px;
+    -fx-max-height: 100px;
+    -fx-max-width: 300px;
+    -fx-margin-top: 5px;
+}
+
+
+.vbox {
+    -fx-background-color: #b6bdab;
+    -fx-padding: 20px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.custom-table {
+    -fx-alignment: CENTER;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1;
+    -fx-font-size: 14px;
+}
+
+.custom-hbox {
+    -fx-spacing: 10px;
+    -fx-padding: 10px;
+}
+
+.custom-pane {
+    -fx-spacing: 20px;
+    -fx-padding: 20px;
+}
+
+.custom-area {
+    -fx-font-size: 14px;
+    -fx-pref-height: 100px;
+    -fx-pref-width: 300px;
+}
+
+
+.questions-pane {
+    -fx-padding: 5px;
+    -fx-background-color: #b6bdab;
+    -fx-border-color: #b6bdab;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+}
+
+.questions-pane Label {
+    -fx-text-fill: #100f0f;
+    -fx-font-size: 14px;
+    /*-fx-font-weight: bold;*/
+}
+
+
+.control-buttons {
+    -fx-spacing: 10px; /* Расстояние между кнопками */
+    -fx-padding: 10px; /* Внутренние отступы */
+}
+
+/* Стили для управляющих кнопок */
+.control-buttons .button {
+    -fx-background-color: #2c2c2a; /* Фон кнопки */
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-background-radius: 10px;
+    -fx-pref-width: 150px; /* Ширина кнопки */
+}
+
+.control-buttons .button:hover {
+    -fx-background-color: #025239;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.control-buttons .button:pressed {
+    -fx-background-color: #01391e;
+}

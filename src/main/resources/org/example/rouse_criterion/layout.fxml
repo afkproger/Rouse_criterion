@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.rouse_criterion.Controller.MainController">
+    <top>
+        <HBox spacing="10" alignment="CENTER" BorderPane.alignment="CENTER" styleClass="custom-hbox">
+            <Button text="О студенте" fx:id="aboutStudent"/>
+            <Button text="О курсовом проекте" fx:id="aboutProject"/>
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="10" alignment="TOP_CENTER" styleClass="custom-pane">
+            <TextArea fx:id="inputData" promptText="Введите список коэффициентов через запятую" styleClass="custom-area"/>
+            <Button fx:id="sendCoefficient" text="Рассчитать" alignment="TOP_CENTER"/>
+            <TableView fx:id="matrixTable" styleClass="custom-table"/>
+            <VBox fx:id="questionsBox" spacing="10" alignment="CENTER" styleClass="questions-pane"/>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox spacing="10" alignment="CENTER" BorderPane.alignment="CENTER" styleClass="custom-hbox">
+            <Button fx:id="checkAnswersButton" text="Проверить ответы" visible="false" />
+            <Button fx:id="clearAnswersButton" text="Очистить" visible="false" />
+        </HBox>
+    </bottom>
+</BorderPane>
