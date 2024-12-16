@@ -25,24 +25,22 @@ public class Validation {
     }
 
     //метод для анализа матрицы рауса
-    private static boolean isSystemStable(List<List<Double>> rouseMatrix) {
+    public static boolean isSystemStable(List<List<Double>> rouseMatrix) {
         for (List<Double> row : rouseMatrix) {
-            if (row.get(0) <= 0) return false;
+            if (row.get(0) < 0) return false;
         }
         return true;
     }
 
-    private static boolean isSystemOnTheVergeStability(List<List<Double>> rouseMatrix) {
-        int zeroCount = 0;
+    public static boolean isSystemOnTheVergeStability(List<List<Double>> rouseMatrix) {
         if (isSystemStable(rouseMatrix)) {
             for (List<Double> row : rouseMatrix) {
-                if (row.get(0) == 0) zeroCount++;
+                if (row.get(0) == 0) return true;
             }
         } else {
             return false;
         }
-
-        return zeroCount >= 1;
+        return false;
     }
 
     private static boolean isSystemOnOscillatoryStability(List<List<Double>> rouseMatrix) {

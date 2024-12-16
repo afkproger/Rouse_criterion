@@ -85,8 +85,9 @@ public class Rouse_criterion {
 
    public static void main(String[] args) {
         String inputData = "2, 5 ,4 ,2 , 1";
+//       String inputData = "2, 5 ,4 ,2 , 1";
         List<List<Double>> rouseMatrix = calculateRouseMatrix(inputData);
-       System.out.println("Система устойчива ? " + Validation.analyzeRouseMatrix(rouseMatrix));
+       System.out.println("Система устойчива ? " + Validation.isSystemStable(rouseMatrix));
    }
 
 }

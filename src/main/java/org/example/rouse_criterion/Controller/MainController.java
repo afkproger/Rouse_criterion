@@ -28,8 +28,8 @@ public class MainController {
     @FXML
     private Button aboutStudent;
 
-    @FXML
-    private Button checkAnswersButton;
+//    @FXML
+//    private Button checkAnswersButton;
 
     @FXML
     private Button clearAnswersButton;
@@ -48,43 +48,22 @@ public class MainController {
     @FXML
     private VBox questionsBox;
 
-    public boolean checkAnswers() {
-        List<Boolean> answers = Validation.analyzeRouseMatrix(rouseMatrix);
-        for (int i = 0; i < answers.size(); i++) {
-            if (answers.get(i) != userAnswers.get(i)) return false;
-        }
-        return true;
-    }
+//    public boolean checkAnswers() {
+//        List<Boolean> answers = Validation.analyzeRouseMatrix(rouseMatrix);
+//        for (int i = 0; i < answers.size(); i++) {
+//            if (answers.get(i) != userAnswers.get(i)) return false;
+//        }
+//        return true;
+//    }
 
     public void displayQuestions(List<String> questions) {
         questionsBox.getChildren().clear();
         userAnswers = new ArrayList<>(Collections.nCopies(questions.size(), null)); // Инициализация списка
 
-        for (int i = 0; i < questions.size(); i++) {
-            String question = questions.get(i);
+        for (String question : questions) {
             HBox questionRow = new HBox(10); // Создаем строку для вопроса и кнопок
             Label questionLabel = new Label(question); // Отображаем текст вопроса
-            Button yesButton = new Button("Да");
-            Button noButton = new Button("Нет");
-
-            yesButton.getStyleClass().add("button");
-            noButton.getStyleClass().add("button");
-
-            int index = i;
-
-            yesButton.setOnAction(event -> {
-                userAnswers.set(index, true); // Обновляем ответ
-                yesButton.getStyleClass().add("button-active"); // Активный стиль для "Да"
-                noButton.getStyleClass().remove("button-active"); // Убираем активный стиль у "Нет"
-            });
-
-            noButton.setOnAction(event -> {
-                userAnswers.set(index, false); // Обновляем ответ
-                noButton.getStyleClass().add("button-active"); // Активный стиль для "Нет"
-                yesButton.getStyleClass().remove("button-active"); // Убираем активный стиль у "Да"
-            });
-
-            questionRow.getChildren().addAll(questionLabel, yesButton, noButton);
+            questionRow.getChildren().addAll(questionLabel);
             questionsBox.getChildren().add(questionRow); // Добавляем строку в контейнер
         }
     }
@@ -157,11 +136,29 @@ public class MainController {
     }
 
     private List<String> generateQuestions(List<List<Double>> matrix) {
-        return List.of(
-                "Cистема устойчива?",
-                "Если система устойчива , она находится на границе устойчивости?",
-                "Если система устойчива , она находится на колебательной  границе устойчивости?"
-        );
+        if (Validation.isSystemStable(matrix) && Validation.isSystemOnTheVergeStability(matrix)){
+            System.out.println(Validation.isSystemOnTheVergeStability(matrix));
+            return List.of(
+                    "Cистема устойчива?",
+                    "Имеет ли система правые корни , если да , то сколько?",
+                    "Если система устойчива , она находится на границе устойчивости?",
+                    "Если система находится на границе устойчивости , она находится на колебательной или апериодической границе устойчивости?"
+            );
+        } else if (Validation.isSystemStable(matrix)) {
+            return List.of(
+                    "Cистема устойчива?",
+                    "Имеет ли система правые корни , если да , то сколько?",
+                    "Если система устойчива , она находится на границе устойчивости?"
+
+            );
+        }
+        {
+            return List.of(
+                    "Cистема устойчива?",
+                    "Имеет ли система правые корни , если да , то сколько?"
+            );
+        }
+
     }
 
     @FXML
@@ -181,20 +178,20 @@ public class MainController {
                 throw new RuntimeException(e);
             }
         });
-        checkAnswersButton.setOnAction(event -> {
-            if (checkAnswers()){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Всё верно");
-                alert.setHeaderText("Вы ответили на все вопросы верно");
-                alert.showAndWait();
-            }else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Ошибка");
-                alert.setHeaderText("Ошибка в ответах");
-                alert.setContentText("Проверьте проверьте введённые ответы. ");
-                alert.showAndWait();
-            }
-        });
+//        checkAnswersButton.setOnAction(event -> {
+//            if (checkAnswers()){
+//                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                alert.setTitle("Всё верно");
+//                alert.setHeaderText("Вы ответили на все вопросы верно");
+//                alert.showAndWait();
+//            }else {
+//                Alert alert = new Alert(Alert.AlertType.ERROR);
+//                alert.setTitle("Ошибка");
+//                alert.setHeaderText("Ошибка в ответах");
+//                alert.setContentText("Проверьте проверьте введённые ответы. ");
+//                alert.showAndWait();
+//            }
+//        });
 
         // Обработчик для очистки ответов
         clearAnswersButton.setOnAction(event -> {
@@ -202,7 +199,7 @@ public class MainController {
             inputData.clear();
             matrixTable.getItems().clear();
             questionsBox.getChildren().clear();
-            checkAnswersButton.setVisible(false);
+//            checkAnswersButton.setVisible(false);
             clearAnswersButton.setVisible(false);
             System.out.println("Ответы очищены");
         });
@@ -218,7 +215,7 @@ public class MainController {
                 displayMatrix(rouseMatrix);
                 List<String> questions = generateQuestions(rouseMatrix);
                 displayQuestions(questions);
-                checkAnswersButton.setVisible(true);
+//                checkAnswersButton.setVisible(true);
                 clearAnswersButton.setVisible(true);
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
